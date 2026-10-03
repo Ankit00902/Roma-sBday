@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Minecraft Birthday 🎂</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#111;color:#fff;font-family:'Press Start 2P',monospace;image-rendering:pixelated}
+.sky{position:fixed;inset:0;z-index:-5;background:linear-gradient(#62c9ff 0 58%,#83d34c 58% 100%)}
+.cloud{position:fixed;background:#fff;opacity:.8;width:130px;height:30px;box-shadow:35px -20px #fff,75px 0 #fff,110px 15px #fff;z-index:-4;animation:cloud 30s linear infinite}.c1{top:12%;left:-180px}.c2{top:28%;left:45%;transform:scale(.7);animation-duration:40s}@keyframes cloud{to{left:110%}}
+.grassline{position:fixed;bottom:0;height:20px;width:100%;background:#4b9e28;border-top:8px solid #78c943;z-index:-2}
+section{min-height:100vh;padding:55px 18px;display:flex;align-items:center;justify-content:center}.box{width:min(900px,100%);background:#111e;border:6px solid #555;box-shadow:10px 10px #0008,inset 0 0 0 4px #222;padding:28px}.hero{text-align:center;display:flex;flex-direction:column}
+h1{font-size:clamp(28px,7vw,64px);line-height:1.35;color:#fff;text-shadow:6px 6px #333;margin:20px 0}.green{color:#55e637;text-shadow:5px 5px #174a12}.subtitle{font-size:12px;line-height:2;color:#ddd}
+.pixel-btn{font-family:inherit;font-size:12px;color:white;background:#5b5b5b;border:4px solid #202020;border-top-color:#aaa;border-left-color:#aaa;padding:18px 22px;cursor:pointer;box-shadow:0 5px #111;margin:10px;transition:.1s}.pixel-btn:hover{background:#6f6f6f}.pixel-btn:active{transform:translateY(5px);box-shadow:none}
+.creeper{width:100px;height:100px;background:#59c837;margin:28px auto;position:relative;box-shadow:8px 8px #1c701d}.creeper:before,.creeper:after{content:"";position:absolute;background:#111;width:22px;height:30px;top:25px}.creeper:before{left:20px}.creeper:after{right:20px}.creeper .mouth{position:absolute;background:#111;width:55px;height:35px;left:22px;top:53px}.creeper .mouth:before,.creeper .mouth:after{content:"";position:absolute;background:#59c837;width:17px;height:15px;top:0}.creeper .mouth:before{left:0}.creeper .mouth:after{right:0}
+.card{background:#202020;border:5px solid #777;padding:25px;box-shadow:inset 0 0 0 4px #111}.title{font-size:clamp(20px,5vw,34px);color:#55e637;text-shadow:4px 4px #174a12;text-align:center;margin-top:0}.letter{font-size:11px;line-height:2.2;color:#eee;white-space:pre-line}
+.inventory{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.slot{aspect-ratio:1;background:#8b8b8b;border:4px solid #373737;border-top-color:#c5c5c5;border-left-color:#c5c5c5;padding:5px;cursor:pointer;overflow:hidden;position:relative}.slot img{width:100%;height:100%;object-fit:cover;display:block}.slot:hover{transform:scale(1.04)}.photo-label{position:absolute;left:5px;right:5px;bottom:5px;background:#000b;padding:7px;font-size:7px;text-align:center}.photo-note{font-size:8px;line-height:1.7;text-align:center;color:#ddd}
+.story{display:grid;gap:12px}.quest{border:3px solid #777;background:#151515;padding:18px;font-size:10px;line-height:1.9}.quest b{color:#ffe34b}.hidden{display:none}.hidden.show{display:block;animation:pop .5s}@keyframes pop{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+.hearts{font-size:24px;letter-spacing:8px;text-align:center;margin:15px}footer{text-align:center;background:#111;padding:30px;font-size:8px;line-height:2;color:#aaa}
+#particles{position:fixed;inset:0;pointer-events:none;z-index:50}.p{position:absolute;font-size:20px;animation:fall 2s linear forwards}@keyframes fall{from{transform:translateY(-30px) rotate(0)}to{transform:translateY(105vh) rotate(500deg)}}
+#lightbox{display:none;position:fixed;inset:0;background:#000d;z-index:100;align-items:center;justify-content:center;padding:20px}#lightbox.show{display:flex}#lightbox img{max-width:95vw;max-height:90vh;border:6px solid #777;box-shadow:10px 10px #000}
+@media(max-width:550px){.box{padding:18px}.inventory{gap:5px}.letter{font-size:9px}.photo-label{font-size:6px}}
+</style></head>
+<body>
+<div class="sky"></div><div class="cloud c1"></div><div class="cloud c2"></div><div class="grassline"></div><div id="particles"></div>
+
+<section class="hero"><div class="box">
+<div style="font-size:10px;color:#ffe34b">★ ACHIEVEMENT UNLOCKED ★</div>
+<h1>HAPPY<br><span class="green">BIRTHDAY</span><br><span id="name">Roman_ruler5166</span> 🎂</h1>
+<div class="creeper"><div class="mouth"></div></div>
+<p class="subtitle">A special Minecraft world has been created just for you.<br>There is a secret waiting inside... 👀</p>
+<button class="pixel-btn" onclick="startQuest()">▶ START QUEST</button>
+</div></section>
+
+<section id="letter"><div class="box">
+<h2 class="title">📜 BIRTHDAY LETTER</h2><div class="card"><div class="letter" id="message"></div></div><div class="hearts">❤️ ❤️ ❤️ ❤️ ❤️</div>
+</div></section>
+
+<section><div class="box">
+<h2 class="title">🎒 MEMORY INVENTORY</h2><p class="photo-note">Click any memory to open it full screen.</p>
+<div class="inventory">
+<div class="slot" onclick="showPhoto('memory1.jpg')"><img src="memory1.jpg"><div class="photo-label">MEMORY #1</div></div>
+<div class="slot" onclick="showPhoto('memory2.jpg')"><img src="memory2.jpg"><div class="photo-label">MEMORY #2</div></div>
+<div class="slot" onclick="showPhoto('memory3.jpg')"><img src="memory3.jpg"><div class="photo-label">MEMORY #3</div></div>
+<div class="slot" onclick="showPhoto('memory4.jpg')"><img src="memory4.jpg"><div class="photo-label">MEMORY #4</div></div>
+<div class="slot" onclick="showPhoto('memory5.jpg')"><img src="memory5.jpg"><div class="photo-label">MEMORY #5</div></div>
+<div class="slot" onclick="showPhoto('memory6.jpg')"><img src="memory6.jpg"><div class="photo-label">MEMORY #6</div></div>
+</div></div></section>
+
+<section><div class="box"><h2 class="title">⛏️ QUEST LOG</h2><div class="story">
+<div class="quest">☑ <b>Quest 1:</b> Become friends — COMPLETED</div>
+<div class="quest">☑ <b>Quest 2:</b> Create crazy memories — COMPLETED</div>
+<div class="quest">☑ <b>Quest 3:</b> Survive all the jokes 😂 — COMPLETED</div>
+<div class="quest">☐ <b>Quest 4:</b> Make another legendary year — IN PROGRESS...</div>
+</div></div></section>
+
+<section><div class="box" style="text-align:center"><h2 class="title">⚠️ SECRET CHEST ⚠️</h2>
+<p class="subtitle">Only the birthday player can open it.</p><button class="pixel-btn" onclick="openChest()">🎁 OPEN CHEST</button>
+<div id="secret" class="card hidden" style="margin-top:20px"><div style="font-size:55px">🎉</div><h2 style="color:#ffe34b">LEVEL UP!</h2>
+<p class="letter" style="text-align:center">May your next year be filled with happiness, success, laughter and unforgettable adventures. ❤️<br><br>Happy Birthday, legend! 🥳</p><div style="font-size:35px">💎 🎂 🥳 💚 🎈</div></div>
+</div></section>
+
+<div id="lightbox" onclick="closePhoto()"><img id="lightboxImg" src="" alt="Memory"></div>
+<footer>⛏️ Crafted with ❤️ for <span id="footer">Roman_ruler5166</span> • Birthday Edition by Shinchanroo</footer>
+
+<script>
+const FRIEND_NAME="Roman_ruler";
+const MESSAGE=`Dear Roman_ruler5166,
+
+Today you gained a new achievement:
+
+🎂 BIRTHDAY LEVEL UP!
+
+Thank you for being such an amazing friend and for all the crazy memories we've made.
+
+May your life have more happiness than diamonds, more adventures than a Minecraft world, and absolutely zero Creeper explosions. 😂
+
+Keep mining your dreams, keep building your future, and keep being awesome!
+
+Happy Birthday, legend! ❤️
+
+— Shinchanroo`;
+document.getElementById("name").textContent=FRIEND_NAME;document.getElementById("footer").textContent=FRIEND_NAME;document.getElementById("message").textContent=MESSAGE;
+function startQuest(){celebrate();document.getElementById("letter").scrollIntoView({behavior:"smooth"})}
+function openChest(){document.getElementById("secret").classList.add("show");celebrate(70)}
+function celebrate(n=45){const area=document.getElementById("particles"),icons=["💎","❤️","⭐","🎉","🎂","🟩"];for(let i=0;i<n;i++){let e=document.createElement("div");e.className="p";e.textContent=icons[Math.floor(Math.random()*icons.length)];e.style.left=Math.random()*100+"%";e.style.animationDelay=Math.random()*1.2+"s";area.appendChild(e);setTimeout(()=>e.remove(),3000)}}
+function showPhoto(src){document.getElementById("lightboxImg").src=src;document.getElementById("lightbox").classList.add("show")}
+function closePhoto(){document.getElementById("lightbox").classList.remove("show")}
+</script></body></html>
