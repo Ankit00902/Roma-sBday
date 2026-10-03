@@ -62,6 +62,9 @@ h1{font-size:clamp(28px,7vw,64px);line-height:1.35;color:#fff;text-shadow:6px 6p
 
 <div id="lightbox" onclick="closePhoto()"><img id="lightboxImg" src="" alt="Memory"></div>
 <footer>⛏️ Crafted with ❤️ for <span id="footer">Roman_ruler5166</span> • Birthday Edition by Shinchanroo</footer>
+<audio id="bgMusic" loop preload="auto">
+    <source src="birthday_music.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 const FRIEND_NAME="Roman_ruler";
@@ -81,7 +84,27 @@ Happy Birthday, legend! ❤️
 
 — Shinchanroo`;
 document.getElementById("name").textContent=FRIEND_NAME;document.getElementById("footer").textContent=FRIEND_NAME;document.getElementById("message").textContent=MESSAGE;
-function startQuest(){celebrate();document.getElementById("letter").scrollIntoView({behavior:"smooth"})}
+function startQuest() {
+  
+  // 🎵 Start Birthday Music
+  const music = document.getElementById("bgMusic");
+  
+  music.volume = 0.35;
+  
+  music.play().catch(() => {
+    console.log("Music playback blocked by browser");
+  });
+  
+  // 🎉 Birthday celebration
+  celebrate();
+  
+  // 📜 Scroll to birthday letter
+  setTimeout(() => {
+    document.getElementById("letter").scrollIntoView({
+      behavior: "smooth"
+    });
+  }, 400);
+}
 function openChest(){document.getElementById("secret").classList.add("show");celebrate(70)}
 function celebrate(n=45){const area=document.getElementById("particles"),icons=["💎","❤️","⭐","🎉","🎂","🟩"];for(let i=0;i<n;i++){let e=document.createElement("div");e.className="p";e.textContent=icons[Math.floor(Math.random()*icons.length)];e.style.left=Math.random()*100+"%";e.style.animationDelay=Math.random()*1.2+"s";area.appendChild(e);setTimeout(()=>e.remove(),3000)}}
 function showPhoto(src){document.getElementById("lightboxImg").src=src;document.getElementById("lightbox").classList.add("show")}
